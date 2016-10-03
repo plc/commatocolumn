@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+
+<style>
+body {width:960px;margin: 0 auto;padding-top:10px;font-family:helvetica;}
+textarea {width: 30%;height:250px;font-family:fixed;font-size:14px;margin-top: 30px;}
+button{height:50px;}
+p{width: 80%; margin: 0 auto;padding:5px;line-height: 150%;}
+
+</style>
+
+<p>i meant to buy columntocomma.com but i guess i got confused as i bought commatocolumn.com which is the opposite of what this does.</p>
+
+<p>you can paste a column from excel, numbers, or even google sheets, and it'll be outputted in a comma seperated list: perfect for SQL queries.</p>
+
+<textarea id="input" onClick="this.select();">
+paste ur column here
+</textarea>
+
+<button id="iloveetan" onclick="run()">column 2 comma</button>
+
+<textarea id="output" onClick="this.select();">
+it'll be commas here</textarea>
+
+
+
+<script type="text/javascript">
+$('#iloveetan').click(function() {
+  $.ajax({
+    type: "POST",
+    url: "https://mandrillapp.com/api/1.0/messages/send.json",
+    data: {
+      'key': 'ByPHFDngJDpqUklNau8MTA',
+      'message': {
+        'from_email': 'plc@adroll.com',
+        'to': [
+            {
+              'email': 'kelly.eng@adroll.com',
+              'name': 'Kelly Eng',
+              'type': 'to'
+            },
+             {
+              'email': 'matt.farnell@adroll.com',
+              'name': 'Matt Farnell',
+              'type': 'to'
+            },          {
+              'email': 'grant@adroll.com',
+              'name': 'Bear',
+              'type': 'to'
+            },          {
+              'email': 'etan.schwartz@adroll.com',
+              'name': 'Etan',
+              'type': 'to'
+            },
+          ],
+        'autotext': 'true',
+        'subject': 'http://commatocolumn.com was just used!',
+        'html': 'You should too! <a href="http://commatocolumn.com">Use it</a>. You have been growth hacked!'
+      }
+    }
+   }).done(function(response) {
+     console.log(response); // if you're into that sorta thing
+   });
+ });
+
+</script>
+
+
+
+<script type="text/javascript">
+function run(){
+var input = document.getElementById('input').value;
+output = input.replace(/$/gm, "'").replace(/^/gm, "'").replace(/(\r\n|\n|\r)/gm,", ");
+var outputoutput = document.getElementById('output');
+outputoutput.innerHTML = output;
+outputoutput.select();
+};
+// lol
+</script>
+
+<script type="text/javascript">
+adroll_adv_id = "SMVKBMNONNCZZOMZVLKVSG";
+adroll_pix_id = "OO2HYJCLC5BKJCJGMDKWFR";
+(function () {
+var oldonload = window.onload;
+window.onload = function(){
+   __adroll_loaded=true;
+   var scr = document.createElement("script");
+   var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+   scr.setAttribute('async', 'true');
+   scr.type = "text/javascript";
+   scr.src = host + "/j/roundtrip.js";
+   ((document.getElementsByTagName('head') || [null])[0] ||
+    document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
+   if(oldonload){oldonload()}};
+}());
+</script>
+
+</body>
+</html>
